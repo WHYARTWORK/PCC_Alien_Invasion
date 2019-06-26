@@ -3,8 +3,6 @@ import pygame
 from settings import Settings
 from ship import Ship
 import game_functions as gf
-from hollowknight import TheKnight
-from shiptwo import ShipTwo
 
 def run_game():
     # Initialize pygame, settings, and screen object.
@@ -15,13 +13,12 @@ def run_game():
     pygame.display.set_caption("Alien Invasion")
 
     #Make a ship.
-    ship = Ship(screen)
-    knight = TheKnight(screen)
-    shiptwo = ShipTwo(screen)
+    ship = Ship(ai_settings, screen)
 
     #Start the main loop for the game.
     while True:
-        gf.check_events()
-        gf.update_screen(ai_settings, screen, ship, knight, shiptwo)
+        gf.check_events(ship)
+        ship.update()
+        gf.update_screen(ai_settings, screen, ship)
 
 run_game()
