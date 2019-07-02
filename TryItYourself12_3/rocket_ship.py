@@ -7,7 +7,7 @@ class Ship():
         self.ai_settings = ai_settings
 
         #Load the rocket ship image and get it's rect.
-        self.image = pygame.image.load('')
+        self.image = pygame.image.load('../images/ship.bmp')
         self.rect = self.image.get_rect()
         self.screen_rect = screen.get_rect()
 
@@ -30,15 +30,16 @@ class Ship():
         # Update the ship's center value, not the rect.
         if self.moving_right and self.rect.right < self.screen_rect.right:
             self.center += self.ai_settings.ship_speed_mult
-        if self.moving_left and self.rect.left < self.screen_rect.left:
-            self.center -= self.ai_setting.ship_speed_mult
-        if self.moving_up and self.rect.top < self.screen_rect.top:
+        if self.moving_left and self.rect.left > 0:
+            self.center -= self.ai_settings.ship_speed_mult
+        if self.moving_up and self.rect.top > 0:
             self.centery += self.ai_settings.ship_speed_mult
         if self.moving_down and self.rect.bottom < self.screen_rect.bottom:
             self.centery -= self.ai_settings.ship_speed_mult
 
         # Update the rect object from self.center
         self.rect.centerx = self.center
+        
 
     def blitme(self):
         """Draw the ship at its current location."""
